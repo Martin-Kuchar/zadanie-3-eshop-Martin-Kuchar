@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.product.logic.IProductService;
+import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.Amount;
 import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.ProductRequest;
 import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.ProductResponse;
+import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.ProductUpdateRequest;
 
 @RestController
 @RequestMapping("/product")
@@ -27,12 +29,27 @@ public class ProductController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ProductResponse> addBook(@RequestBody ProductRequest body) throws NotFoundException {
+    public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequest body) throws NotFoundException {
         return new ResponseEntity<>(new ProductResponse(this.service.create(body)), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductResponse getBook(@PathVariable("id") Long bookId) throws NotFoundException {
-        return new ProductResponse(this.service.getById(bookId));
+    public ProductResponse getProduct(@PathVariable("id") Long productId) throws NotFoundException {
+        return new ProductResponse(this.service.getById(productId));
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductResponse updateProduct(@PathVariable("id") Long productId, @RequestBody ProductUpdateRequest body) throws NotFoundException {
+        return new ProductResponse(this.service.update(productId, body));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteProduct(@PathVariable("id") Long productId) throws NotFoundException {
+        this.service.delete(productId);
+    }
+
+    @GetMapping(value = "/{id}/amount")
+    public Amount getProductAmount(@PathVariable("id") long id) throws NotFoundException {
+        return new Amount(this.service.getById(id).getAmount());
     }
 }
