@@ -15,6 +15,9 @@ import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.Amount;
 import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.ProductRequest;
 import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.ProductResponse;
 import sk.stuba.fei.uim.oop.assignment3.product.web.bodies.ProductUpdateRequest;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/product")
@@ -50,6 +53,11 @@ public class ProductController {
 
     @GetMapping(value = "/{id}/amount")
     public Amount getProductAmount(@PathVariable("id") long id) throws NotFoundException {
-        return new Amount(this.service.getById(id).getAmount());
+        return new Amount(this.service.getAmount(id));
     }
+
+    @PostMapping(value="/{id}/amount", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Amount addProdAmount(@PathVariable("id") long id, @RequestBody Amount body) throws NotFoundException {
+        return new Amount(this.service.addAmount(id, body.getAmount()));
+    }   
 }

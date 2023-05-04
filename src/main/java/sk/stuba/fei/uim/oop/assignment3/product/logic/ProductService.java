@@ -59,4 +59,11 @@ public class ProductService implements IProductService {
         Product p = this.getById(id);
         return p.getAmount();
     }
+
+    @Override
+    public int addAmount(long id, int amount) throws NotFoundException {
+        Product p = this.getById(id);
+        p.setAmount(p.getAmount() + amount);
+        return p.getAmount();
+    }
 }
