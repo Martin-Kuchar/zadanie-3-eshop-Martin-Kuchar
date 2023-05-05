@@ -11,5 +11,4 @@ public class ProductRequest {
     private int amount;
     private String unit;
     private double price;
-    
 }

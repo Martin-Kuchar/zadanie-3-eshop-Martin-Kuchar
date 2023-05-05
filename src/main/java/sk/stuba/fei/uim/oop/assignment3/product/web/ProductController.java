@@ -37,27 +37,27 @@ public class ProductController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductResponse getProduct(@PathVariable("id") Long productId) throws NotFoundException {
+    public ProductResponse getProduct(@PathVariable("id") long productId) throws NotFoundException {
         return new ProductResponse(this.service.getById(productId));
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductResponse updateProduct(@PathVariable("id") Long productId, @RequestBody ProductUpdateRequest body) throws NotFoundException {
+    public ProductResponse updateProduct(@PathVariable("id") long productId, @RequestBody ProductUpdateRequest body) throws NotFoundException {
         return new ProductResponse(this.service.update(productId, body));
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteProduct(@PathVariable("id") Long productId) throws NotFoundException {
+    public void deleteProduct(@PathVariable("id") long productId) throws NotFoundException {
         this.service.delete(productId);
     }
 
     @GetMapping(value = "/{id}/amount")
-    public Amount getProductAmount(@PathVariable("id") long id) throws NotFoundException {
-        return new Amount(this.service.getAmount(id));
+    public Amount getProductAmount(@PathVariable("id") long productId) throws NotFoundException {
+        return new Amount(this.service.getAmount(productId));
     }
 
     @PostMapping(value="/{id}/amount", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Amount addProdAmount(@PathVariable("id") long id, @RequestBody Amount body) throws NotFoundException {
-        return new Amount(this.service.addAmount(id, body.getAmount()));
+    public Amount addProdAmount(@PathVariable("id") long productId, @RequestBody Amount body) throws NotFoundException {
+        return new Amount(this.service.addAmount(productId, body.getAmount()));
     }   
 }
