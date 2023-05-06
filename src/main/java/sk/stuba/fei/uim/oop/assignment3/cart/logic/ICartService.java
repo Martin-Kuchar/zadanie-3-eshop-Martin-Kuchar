@@ -3,7 +3,7 @@ package sk.stuba.fei.uim.oop.assignment3.cart.logic;
 import java.util.List;
 
 import sk.stuba.fei.uim.oop.assignment3.cart.data.Cart;
-import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContent;
+import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
@@ -17,6 +17,6 @@ public interface ICartService {
 
     void delete(long id) throws NotFoundException;
 
-    Cart addToCart(long id, CartContent c) throws NotFoundException, IllegalOperationException;
+    Cart addToCart(long id, CartContentResponse c) throws NotFoundException, IllegalOperationException;
 
 }

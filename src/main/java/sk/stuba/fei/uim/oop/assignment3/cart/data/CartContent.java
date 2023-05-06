@@ -1,32 +1,28 @@
 package sk.stuba.fei.uim.oop.assignment3.cart.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
+import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
 
 @Entity
 @Getter
 @Setter
-public class Cart {
+public class CartContent {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @OneToMany(cascade = {CascadeType.REMOVE})
-    private List<CartContent> shoppingList;
-    private boolean payed;
 
-    public Cart() {
-        this.shoppingList = new ArrayList<>();
+    private long productId;
+    private int amount;
+
+    public CartContent(CartContentResponse r) {
+        this.productId = r.getProductId();
+        this.amount = r.getAmount();
     }
-
 }
