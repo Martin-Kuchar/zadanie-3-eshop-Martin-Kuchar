@@ -12,8 +12,6 @@ import sk.stuba.fei.uim.oop.assignment3.cart.data.ICartRepository;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
-import sk.stuba.fei.uim.oop.assignment3.product.data.IProductRepository;
-import sk.stuba.fei.uim.oop.assignment3.product.data.Product;
 import sk.stuba.fei.uim.oop.assignment3.product.logic.IProductService;
 
 @Service
@@ -24,6 +22,9 @@ public class CartService implements ICartService {
 
     @Autowired
     private IProductService productService;
+
+    @Autowired
+    private ICartContentService cartContentService;
 
     @Override
     public List<Cart> getAll() {
@@ -58,8 +59,8 @@ public class CartService implements ICartService {
         }
 
         this.productService.addAmount(cc.getProductId(), -cc.getAmount());
-        List<CartContent> l = new ArrayList<CartContent>(c.getShoppingList());
-        l.add(new CartContent(cc));
+        ArrayList<CartContent> l = new ArrayList<CartContent>();
+        l.add(this.cartContentService.create(cc));
         c.setShoppingList(l);
 
         return c;

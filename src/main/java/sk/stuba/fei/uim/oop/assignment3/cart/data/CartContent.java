@@ -4,25 +4,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
+import sk.stuba.fei.uim.oop.assignment3.product.data.Product;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class CartContent {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private long productId;
-    private int amount;
+    @ManyToOne
+    private Product product;
+    private long amount;
 
-    public CartContent(CartContentResponse r) {
-        this.productId = r.getProductId();
-        this.amount = r.getAmount();
+    public CartContent(Product p, long amount) {
+        this.product = p;
+        this.amount = amount;
     }
 }
