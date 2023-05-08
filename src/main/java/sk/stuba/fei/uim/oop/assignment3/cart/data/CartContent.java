@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
 import sk.stuba.fei.uim.oop.assignment3.product.data.Product;
 
 @Entity
@@ -25,9 +24,9 @@ public class CartContent {
 
     @ManyToOne
     private Product product;
-    private long amount;
+    private int amount;
 
-    public CartContent(Product p, long amount) {
+    public CartContent(Product p, int amount) {
         this.product = p;
         this.amount = amount;
     }

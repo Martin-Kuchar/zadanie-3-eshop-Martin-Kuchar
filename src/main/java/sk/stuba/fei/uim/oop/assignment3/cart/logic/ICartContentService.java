@@ -5,5 +5,7 @@ import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
 
 public interface ICartContentService {
     
-    CartContent create(CartContentResponse response);
+    CartContent create();
+
+    CartContent save(CartContent c);
 }

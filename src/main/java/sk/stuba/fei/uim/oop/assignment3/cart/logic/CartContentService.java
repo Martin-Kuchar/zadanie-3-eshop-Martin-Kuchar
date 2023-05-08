@@ -1,5 +1,7 @@
 package sk.stuba.fei.uim.oop.assignment3.cart.logic;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,13 @@ public class CartContentService implements ICartContentService {
     private ICartContentRepository repository;
 
     @Override
-    public CartContent create(CartContentResponse response) {
+    public CartContent create() {
         return this.repository.save(new CartContent());
+    }
+
+    @Override
+    public CartContent save(CartContent c) {
+        return this.repository.save(c);
     }
     
 }

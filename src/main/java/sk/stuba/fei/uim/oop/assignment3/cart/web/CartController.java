@@ -48,6 +48,5 @@ public class CartController {
     @PostMapping(value = "/{id}/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public CartResponse addToCart(@PathVariable("id") long cartId, @RequestBody CartContentResponse body) throws NotFoundException, IllegalOperationException {
         return new CartResponse(this.service.addToCart(cartId, body));
-        //TODO cartcontent potrebuje repo
     }
 }

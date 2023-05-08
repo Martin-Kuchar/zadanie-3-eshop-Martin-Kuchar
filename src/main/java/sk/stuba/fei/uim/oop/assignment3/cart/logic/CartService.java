@@ -52,18 +52,37 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public Cart addToCart(long id, CartContentResponse cc) throws NotFoundException, IllegalOperationException {
+    public Cart addToCart(long id, CartContentResponse body) throws NotFoundException, IllegalOperationException {
         Cart c = this.getById(id);
         if (c.isPayed()) {
             throw new IllegalOperationException();
         }
 
-        this.productService.addAmount(cc.getProductId(), -cc.getAmount());
-        ArrayList<CartContent> l = new ArrayList<CartContent>();
-        l.add(this.cartContentService.create(cc));
-        c.setShoppingList(l);
+        this.productService.addAmount(body.getProductId(), -body.getAmount());
 
-        return c;
+        CartContent cc = getCartContentWithProduct(c.getShoppingList(), body.getProductId());
+
+        if(cc == null) {
+            cc = this.cartContentService.create();
+            cc.setAmount(body.getAmount());
+            cc.setProduct(this.productService.getById(body.getProductId()));
+            c.getShoppingList().add(this.cartContentService.save(cc));
+        }
+        else {
+            cc.setAmount(cc.getAmount() + body.getAmount());
+            cartContentService.save(cc);
+        }
+        
+        return this.repository.save(c);
+    }
+
+    public CartContent getCartContentWithProduct(List<CartContent> list, long id) {
+        for (CartContent cartContent : list) {
+            if(cartContent.getProduct().getId() == id) {
+                return cartContent;
+            }
+        }
+        return null;
     }
 
 }
