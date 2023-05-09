@@ -1,6 +1,5 @@
 package sk.stuba.fei.uim.oop.assignment3.cart.logic;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +74,9 @@ public class CartService implements ICartService {
         
         return this.repository.save(c);
     }
+
+    //TODO pay for cart
+
 
     public CartContent getCartContentWithProduct(List<CartContent> list, long id) {
         for (CartContent cartContent : list) {
