@@ -19,7 +19,6 @@ import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartResponse;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
-
 @RestController
 @RequestMapping("/cart")
 public class CartController {
@@ -33,8 +32,8 @@ public class CartController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Cart getCart(@PathVariable("id") long cartId) throws NotFoundException {
-        return this.service.getById(cartId);
+    public CartResponse getCart(@PathVariable("id") long cartId) throws NotFoundException {
+        return new CartResponse(this.service.getById(cartId));
     }
 
     @DeleteMapping(value = "/{id}")
@@ -46,4 +45,10 @@ public class CartController {
     public CartResponse addToCart(@PathVariable("id") long cartId, @RequestBody CartContentResponse body) throws NotFoundException, IllegalOperationException {
         return new CartResponse(this.service.addToCart(cartId, body));
     }
+
+    @GetMapping(value="{id}/pay", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String pay(@PathVariable("id") long id) throws NotFoundException, IllegalOperationException {
+        return "" + this.service.pay(id);
+    }
+    
 }

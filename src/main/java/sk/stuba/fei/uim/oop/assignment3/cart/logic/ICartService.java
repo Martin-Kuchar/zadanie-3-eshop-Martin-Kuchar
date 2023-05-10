@@ -19,4 +19,5 @@ public interface ICartService {
 
     Cart addToCart(long id, CartContentResponse c) throws NotFoundException, IllegalOperationException;
 
+    double pay(long id) throws NotFoundException, IllegalOperationException;
 }

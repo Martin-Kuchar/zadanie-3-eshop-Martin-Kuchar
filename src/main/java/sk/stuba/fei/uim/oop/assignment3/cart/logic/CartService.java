@@ -57,11 +57,15 @@ public class CartService implements ICartService {
             throw new IllegalOperationException();
         }
 
+        if (this.productService.getById(body.getProductId()).getAmount() < body.getAmount()) {
+            throw new IllegalOperationException();
+        }
+
         this.productService.addAmount(body.getProductId(), -body.getAmount());
 
         CartContent cc = getCartContentWithProduct(c.getShoppingList(), body.getProductId());
 
-        if(cc == null) {
+        if (cc == null) {
             cc = this.cartContentService.create();
             cc.setAmount(body.getAmount());
             cc.setProduct(this.productService.getById(body.getProductId()));
@@ -75,16 +79,35 @@ public class CartService implements ICartService {
         return this.repository.save(c);
     }
 
-    //TODO pay for cart
+    @Override
+    public double pay(long id) throws NotFoundException, IllegalOperationException {
+        Cart c = this.getById(id);
 
+        if (c.isPayed()){
+            throw new IllegalOperationException();
+        }
+
+        c.setPayed(true);
+
+        double price = 0;
+
+        for (CartContent i : c.getShoppingList()) {
+            price += i.getAmount() * i.getProduct().getPrice();
+        }
+
+        this.repository.save(c);
+
+        return price;
+    }
 
     public CartContent getCartContentWithProduct(List<CartContent> list, long id) {
         for (CartContent cartContent : list) {
-            if(cartContent.getProduct().getId() == id) {
+            if (cartContent.getProduct().getId() == id) {
                 return cartContent;
             }
         }
         return null;
     }
+
 
 }
