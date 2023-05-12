@@ -86,7 +86,7 @@ public class CartService implements ICartService {
         if (c.isPayed()){
             throw new IllegalOperationException();
         }
-
+        
         c.setPayed(true);
 
         double price = 0;
@@ -100,7 +100,7 @@ public class CartService implements ICartService {
         return price;
     }
 
-    public CartContent getCartContentWithProduct(List<CartContent> list, long id) {
+    private CartContent getCartContentWithProduct(List<CartContent> list, long id) {
         for (CartContent cartContent : list) {
             if (cartContent.getProduct().getId() == id) {
                 return cartContent;
@@ -108,6 +108,4 @@ public class CartService implements ICartService {
         }
         return null;
     }
-
-
 }

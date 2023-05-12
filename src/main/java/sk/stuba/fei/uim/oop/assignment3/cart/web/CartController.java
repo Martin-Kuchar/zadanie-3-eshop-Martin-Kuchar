@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import sk.stuba.fei.uim.oop.assignment3.cart.data.Cart;
 import sk.stuba.fei.uim.oop.assignment3.cart.logic.ICartService;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartResponse;
@@ -50,5 +49,4 @@ public class CartController {
     public String pay(@PathVariable("id") long id) throws NotFoundException, IllegalOperationException {
         return "" + this.service.pay(id);
     }
-    
 }

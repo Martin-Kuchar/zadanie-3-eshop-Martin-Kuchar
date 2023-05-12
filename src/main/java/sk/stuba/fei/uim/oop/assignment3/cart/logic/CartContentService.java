@@ -21,5 +21,4 @@ public class CartContentService implements ICartContentService {
     public CartContent save(CartContent c) {
         return this.repository.save(c);
     }
-    
 }

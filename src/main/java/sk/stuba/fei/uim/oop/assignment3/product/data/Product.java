@@ -33,5 +33,4 @@ public class Product {
         this.unit = r.getUnit();
         this.price = r.getPrice();
     }
-    
 }
