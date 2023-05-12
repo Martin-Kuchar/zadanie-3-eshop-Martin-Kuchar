@@ -1,6 +1,6 @@
-package sk.stuba.fei.uim.oop.assignment3.cartContent.logic;
+package sk.stuba.fei.uim.oop.assignment3.cartcontent.logic;
 
-import sk.stuba.fei.uim.oop.assignment3.cartContent.data.CartContent;
+import sk.stuba.fei.uim.oop.assignment3.cartcontent.data.CartContent;
 
 public interface ICartContentService {
     

@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3.cartContent.data;
+package sk.stuba.fei.uim.oop.assignment3.cartcontent.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

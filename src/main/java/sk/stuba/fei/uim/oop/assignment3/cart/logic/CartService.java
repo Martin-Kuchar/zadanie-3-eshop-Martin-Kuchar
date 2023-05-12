@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import sk.stuba.fei.uim.oop.assignment3.cart.data.Cart;
 import sk.stuba.fei.uim.oop.assignment3.cart.data.ICartRepository;
-import sk.stuba.fei.uim.oop.assignment3.cartContent.data.CartContent;
-import sk.stuba.fei.uim.oop.assignment3.cartContent.logic.ICartContentService;
-import sk.stuba.fei.uim.oop.assignment3.cartContent.web.bodies.CartContentRequest;
+import sk.stuba.fei.uim.oop.assignment3.cartcontent.data.CartContent;
+import sk.stuba.fei.uim.oop.assignment3.cartcontent.logic.ICartContentService;
+import sk.stuba.fei.uim.oop.assignment3.cartcontent.web.bodies.CartContentRequest;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.product.logic.IProductService;

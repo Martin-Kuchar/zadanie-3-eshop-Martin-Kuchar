@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import sk.stuba.fei.uim.oop.assignment3.cart.logic.ICartService;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartResponse;
-import sk.stuba.fei.uim.oop.assignment3.cartContent.web.bodies.CartContentRequest;
+import sk.stuba.fei.uim.oop.assignment3.cartcontent.web.bodies.CartContentRequest;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 

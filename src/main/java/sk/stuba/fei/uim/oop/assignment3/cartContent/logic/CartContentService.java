@@ -1,10 +1,10 @@
-package sk.stuba.fei.uim.oop.assignment3.cartContent.logic;
+package sk.stuba.fei.uim.oop.assignment3.cartcontent.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sk.stuba.fei.uim.oop.assignment3.cartContent.data.CartContent;
-import sk.stuba.fei.uim.oop.assignment3.cartContent.data.ICartContentRepository;
+import sk.stuba.fei.uim.oop.assignment3.cartcontent.data.CartContent;
+import sk.stuba.fei.uim.oop.assignment3.cartcontent.data.ICartContentRepository;
 
 @Service
 public class CartContentService implements ICartContentService {

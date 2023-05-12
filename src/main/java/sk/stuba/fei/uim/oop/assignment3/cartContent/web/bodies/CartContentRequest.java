@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.assignment3.cartContent.web.bodies;
+package sk.stuba.fei.uim.oop.assignment3.cartcontent.web.bodies;
 
 import lombok.Getter;
 import lombok.Setter;
