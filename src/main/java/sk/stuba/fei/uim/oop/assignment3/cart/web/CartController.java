@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sk.stuba.fei.uim.oop.assignment3.cart.logic.ICartService;
-import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
 import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartResponse;
+import sk.stuba.fei.uim.oop.assignment3.cartContent.web.bodies.CartContentRequest;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 
@@ -41,7 +41,7 @@ public class CartController {
     }
 
     @PostMapping(value = "/{id}/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public CartResponse addToCart(@PathVariable("id") long cartId, @RequestBody CartContentResponse body) throws NotFoundException, IllegalOperationException {
+    public CartResponse addToCart(@PathVariable("id") long cartId, @RequestBody CartContentRequest body) throws NotFoundException, IllegalOperationException {
         return new CartResponse(this.service.addToCart(cartId, body));
     }
 

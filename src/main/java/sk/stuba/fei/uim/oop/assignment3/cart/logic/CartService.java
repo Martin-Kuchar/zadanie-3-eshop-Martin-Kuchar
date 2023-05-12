@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sk.stuba.fei.uim.oop.assignment3.cart.data.Cart;
-import sk.stuba.fei.uim.oop.assignment3.cart.data.CartContent;
 import sk.stuba.fei.uim.oop.assignment3.cart.data.ICartRepository;
-import sk.stuba.fei.uim.oop.assignment3.cart.web.bodies.CartContentResponse;
+import sk.stuba.fei.uim.oop.assignment3.cartContent.data.CartContent;
+import sk.stuba.fei.uim.oop.assignment3.cartContent.logic.ICartContentService;
+import sk.stuba.fei.uim.oop.assignment3.cartContent.web.bodies.CartContentRequest;
 import sk.stuba.fei.uim.oop.assignment3.exception.IllegalOperationException;
 import sk.stuba.fei.uim.oop.assignment3.exception.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.product.logic.IProductService;
@@ -51,7 +52,7 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public Cart addToCart(long id, CartContentResponse body) throws NotFoundException, IllegalOperationException {
+    public Cart addToCart(long id, CartContentRequest body) throws NotFoundException, IllegalOperationException {
         Cart c = this.getById(id);
         if (c.isPayed()) {
             throw new IllegalOperationException();
